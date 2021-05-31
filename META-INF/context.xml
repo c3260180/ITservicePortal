@@ -1,0 +1,10 @@
+<Context>
+	<Resource name="jdbc/dealdata" 
+		type="javax.sql.DataSource" 
+		maxActive="10"
+		minIdle="5"
+		username="jdbcUser" 
+		password="mypassword1" 
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		url="jdbc:sqlserver://localhost\SQLEXPRESS;databaseName=seng2050_A2" />
+</Context>
