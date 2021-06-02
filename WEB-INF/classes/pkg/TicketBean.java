@@ -8,19 +8,21 @@ public class TicketBean implements Serializable {
 
 	//data variables
 	private String userAssigned;
-	private String status;
+	private String ticketStatus;
+	private String ticketID;
 
-	private String title;
-	private String category;
-	private String subCategory;
-	private String keywords;
-	private String description;
+	private String ticketTitle;
+	private String ticketCategory;
+	private String ticketSubCategory;
+	private String ticketKeyword;
+	private String ticketDescription;
 
 
 	//constructor
 	public TicketBean(){
 		this.setUser("");
 		this.setStatus("");
+		this.setID("");
 
 		this.setTitle("");
 		this.setCategory("");
@@ -39,53 +41,59 @@ public class TicketBean implements Serializable {
 	}
 
 	public synchronized void setStatus(String s){
-		this.status=s;
+		this.ticketStatus=s;
 	}
 
 	public String getStatus(){
-		return this.status;
+		return this.ticketStatus;
 	}
 
-	
+	public synchronized void setID(String id){
+		this.ticketID=id;
+	}
+
+	public String getID(){
+		return this.ticketID;
+	}
 
 	public synchronized void setTitle(String s){
-		this.title=s;
+		this.ticketTitle=s;
 	}
 
 	public String getTitle(){
-		return this.title;
+		return this.ticketTitle;
 	}
 
 	public synchronized void setCategory(String c){
-		this.category=c;
+		this.ticketCategory=c;
 	}
 
 	public String getCategory(){
-		return this.category;
+		return this.ticketCategory;
 	}
 
 	public synchronized void setSubCategory(String sc){
-		this.subCategory=sc;
+		this.ticketSubCategory=sc;
 	}
 
 	public String getSubCategory(){
-		return this.subCategory;
+		return this.ticketSubCategory;
 	}
 
 	public synchronized void setKeyword(String k){
-		this.keywords=k;
+		this.ticketKeyword=k;
 	}
 
 	public String getKeyword(){
-		return this.keywords;
+		return this.ticketKeyword;
 	}
 
 	public synchronized void setDescription(String d){
-		this.description=d;
+		this.ticketDescription=d;
 	}
 
 	public String getDescription(){
-		return this.description;
+		return this.ticketDescription;
 	}
 
 }
