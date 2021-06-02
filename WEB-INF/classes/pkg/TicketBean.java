@@ -10,6 +10,7 @@ public class TicketBean implements Serializable {
 	private String userAssigned;
 	private String ticketStatus;
 	private String ticketID;
+	private String ticketOpened;
 
 	private String ticketTitle;
 	private String ticketCategory;
@@ -23,6 +24,7 @@ public class TicketBean implements Serializable {
 		this.setUser("");
 		this.setStatus("");
 		this.setID("");
+		this.setOpened("");
 
 		this.setTitle("");
 		this.setCategory("");
@@ -55,6 +57,16 @@ public class TicketBean implements Serializable {
 	public String getID(){
 		return this.ticketID;
 	}
+
+	public synchronized void setOpened(String o){
+		this.ticketOpened=o;
+	}
+
+	public String getOpened(){
+		return this.ticketOpened;
+	}
+
+	
 
 	public synchronized void setTitle(String s){
 		this.ticketTitle=s;
