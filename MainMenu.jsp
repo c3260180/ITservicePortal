@@ -45,6 +45,7 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 <h2> Register </h2>
 <table>
 	<form  method="POST" id="Register" action="LoginRegisterServlet">
+	<input type="hidden" name="Registration" id="Registration" required='required' value="Registration">
 	<tr>
 		<td> Username:</td>
 		<td> <input type="text" name="UserName" id="UserName" required='required' value=""> </td>
@@ -55,11 +56,11 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 	</tr>
 	<tr>
 		<td> First Name: </td>
-		<td> <input type="text" name="First Name" id="First Name" required='required' value=""> </td>
+		<td> <input type="text" name="FirstName" id="FirstName" required='required' value=""> </td>
 	</tr>
 	<tr>
 		<td> Last Name: </td>
-		<td> <input type="text" name="Last Name" id="Last Name" required='required' value=""> </td>
+		<td> <input type="text" name="LastName" id="LastName" required='required' value=""> </td>
 	</tr>
 	<tr>
 		<td> Email: </td>
@@ -67,7 +68,7 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 	</tr>
 	<tr>
 		<td> Contact Number: </td>
-		<td> <input type="text" name="Contact Number" id="Contact Number" required='required' value=""> </td>
+		<td> <input type="text" name="ContactNumber" id="ContactNumber" required='required' value=""> </td>
 	</tr>
 	<tr>
 		<td> Role: </td>
