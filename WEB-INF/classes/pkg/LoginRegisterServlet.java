@@ -32,6 +32,26 @@ public class LoginRegisterServlet extends HttpServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException 
 	{
-		
+		if(request.getParameter("Registration") != null)
+		{
+			System.out.println(request.getParameter("UserName"));
+			System.out.println(request.getParameter("Password"));
+			System.out.println(request.getParameter("FirstName"));
+			System.out.println(request.getParameter("LastName"));
+			System.out.println(request.getParameter("Email"));
+			System.out.println(request.getParameter("ContactNumber"));
+			System.out.println(request.getParameter("Role"));
+
+
+			//check the DB if this user name exists 
+
+			//if we can register this name save it in the db 
+
+			//if save was successful login this account
+
+			//redirect to userAccountPage if it works 
+
+			//
+		}
 	}
 }
