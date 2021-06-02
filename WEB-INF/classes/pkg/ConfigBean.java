@@ -12,7 +12,7 @@ public class ConfigBean {
         try 
         {
             InitialContext ctx = new InitialContext();
-            return (DataSource) ctx.lookup("java:/comp/env/jdbc/dealdata");
+            return (DataSource) ctx.lookup("java:/comp/env/jdbc/itservices");
         } 
         catch (NamingException e) 
         { 

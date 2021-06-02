@@ -24,7 +24,6 @@ public class LoginRegisterServlet extends HttpServlet
 		{
 			request.getSession().setAttribute("displayRequestMainPage", request.getParameter("Login/Register"));
 			response.sendRedirect("MainMenu.jsp");
-
 		}
 
 	}
