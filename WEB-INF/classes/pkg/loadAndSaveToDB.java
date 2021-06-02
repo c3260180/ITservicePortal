@@ -5,7 +5,7 @@ import java.util.*;
 
 public static class loadAndSaveToDB
 {   
-
+/*
 	public static UserBean loadUser(String userName)
 	{
 		return 
@@ -56,5 +56,5 @@ public static class loadAndSaveToDB
 		
 	}
 
-
+*/
 }
