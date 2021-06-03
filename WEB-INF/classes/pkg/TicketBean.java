@@ -14,7 +14,6 @@ public class TicketBean implements Serializable {
 
 	private String ticketTitle;
 	private String ticketCategory;
-	private String ticketSubCategory;
 	private String ticketKeyword;
 	private String ticketDescription;
 
@@ -28,7 +27,6 @@ public class TicketBean implements Serializable {
 
 		this.setTitle("");
 		this.setCategory("");
-		this.setSubCategory("");
 		this.setKeyword("");
 		this.setDescription("");
 	}
@@ -82,14 +80,6 @@ public class TicketBean implements Serializable {
 
 	public String getCategory(){
 		return this.ticketCategory;
-	}
-
-	public synchronized void setSubCategory(String sc){
-		this.ticketSubCategory=sc;
-	}
-
-	public String getSubCategory(){
-		return this.ticketSubCategory;
 	}
 
 	public synchronized void setKeyword(String k){

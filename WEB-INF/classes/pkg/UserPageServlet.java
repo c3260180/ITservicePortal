@@ -37,23 +37,20 @@ public class UserPageServlet extends HttpServlet
 		
 		if(request.getParameter("Registration") != null)
 		{
+			//check the DB if the ticket exists
 
-
-			//check the DB if this user name exists 
-
-			//if the 
-			if(!DBhandler.findUserByName(request.getParameter("ticketTitle")))
+			//if the ticket ticket exist save it on the db
+			if(!DBhandler.findTicketByTitle(request.getParameter("ticketTitle")))
 			{
 				TicketBean ticket = new TicketBean();
-				ticket.setUserName(request.getParameter("userAssigned"));
-				ticket.setPassCode(request.getParameter("ticketID"));
-				ticket.setFirstName(request.getParameter("ticketKeyword"));
-				ticket.setLastName(request.getParameter("ticketStatus"));
-				ticket.setEmail(request.getParameter("ticketTitle"));
-				ticket.setContactNumber(request.getParameter("ticketOpened"));
-				ticket.setUserRole(request.getParameter("ticketCategory"));
-				ticket.setUserRole(request.getParameter("ticketSubCategory"));
-				ticket.setUserRole(request.getParameter("ticketDescription"));
+				ticket.setUser(request.getParameter("userAssigned"));
+				ticket.setID(request.getParameter("ticketID"));
+				ticket.setKeyword(request.getParameter("ticketKeyword"));
+				ticket.setStatus(request.getParameter("ticketStatus"));
+				ticket.setTitle(request.getParameter("ticketTitle"));
+				ticket.setOpened(request.getParameter("ticketOpened"));
+				ticket.setCategory(request.getParameter("ticketCategory"));
+				ticket.setDescription(request.getParameter("ticketDescription"));
 
 				//Save it in the db 
 				DBhandler.saveTicket(ticket);

@@ -171,7 +171,7 @@ public class DBhandler
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
 		{
-			//name not found
+			//Ticket not found
 			if(!findTicketByTitle(ticket.getTitle()))
 			{
 				insertStatement.setString(1, ticket.getUser());
