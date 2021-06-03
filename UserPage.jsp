@@ -1,3 +1,4 @@
+<%@page import="pkg.UserBean" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -8,13 +9,15 @@
 </head>
 <body>
 
-
 <h1> IT Services App </h1>
-
+<% UserBean user = (UserBean) session.getAttribute("User"); %>
 
 <div id="fixedDisplay">
 
-<p>Username displayed here     <button>logout here</button> </p>
+<p>Logged in as: <%=user.getUserName()%>  		</p>	
+<form method="GET" id="LogoutForm" action="LoginRegisterServlet">
+	<input type="submit" name="Logout" id="Logout" value="Logout">
+</form>
 
 
 <table >
@@ -59,11 +62,11 @@
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
-		Network:<input type="checkbox" name="Category" id="Category" required='required' value="Network"> 
-		Software:<input type="checkbox" name="Category" id="Category" required='required' value="Software"> 
-		Hardware:<input type="checkbox" name="Category" id="Category" required='required' value="Hardware"> 
-		Email:<input type="checkbox" name="Category" id="Category" required='required' value="Email">
-		Account:<input type="checkbox" name="Category" id="Category" required='required' value="Account"> 	
+		Network:<input type="checkbox" name="Category"  required='required' value="Network"> 
+		Software:<input type="checkbox" name="Category" required='required' value="Software"> 
+		Hardware:<input type="checkbox" name="Category" required='required' value="Hardware"> 
+		Email:<input type="checkbox" name="Category" required='required' value="Email">
+		Account:<input type="checkbox" name="Category" required='required' value="Account"> 	
 		</td> </tr>
 
 		<tr> <td>Keywords</td> <td> <input type="text" name="Keywords" id="Keywords"  value=""> </td> </tr>
@@ -100,11 +103,11 @@
 		<td>placeholder</td>
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
-		Network:<input type="checkbox" name="CategoryFilter" id="CategoryFilter" value="Network"> 
-		Software:<input type="checkbox" name="CategoryFilter" id="CategoryFilter" value="Software"> 
-		Hardware:<input type="checkbox" name="CategoryFilter" id="CategoryFilter" value="Hardware"> 
-		Email:<input type="checkbox" name="CategoryFilter" id="CategoryFilter" value="Email"> <br>
-		Account:<input type="checkbox" name="CategoryFilter" id="CategoryFilter" value="Account"> 	
+		Network:<input type="checkbox" name="CategoryFilter"  value="Network"> 
+		Software:<input type="checkbox" name="CategoryFilter" value="Software"> 
+		Hardware:<input type="checkbox" name="CategoryFilter" value="Hardware"> 
+		Email:<input type="checkbox" name="CategoryFilter"  value="Email"> <br>
+		Account:<input type="checkbox" name="CategoryFilter" value="Account"> 	
 		</td>
 	</tr>
 

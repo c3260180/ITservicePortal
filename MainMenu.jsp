@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="pkg.UserBean" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 {
 if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 <h2> Login </h2>
-	<form  method="POST" id="Login" action="LoginRegisterServlet">
+	<form  method="POST" action="LoginRegisterServlet">
 		UserName: <input type="text" name="UserName" id="UserName" required='required' value="">
 		Password: <input type="password" name="Password" id="Password" required='required' value=""> <br>
 		<input type="submit" name="Login" id="Login" value="Login">
@@ -72,7 +73,7 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 	</tr>
 	<tr>
 		<td> Role: </td>
-		<td> Admin: <input type="radio" name="Role" id="Role" required='required' value="Admin"> User: <input type="radio" name="Role" id="Role" required='required' value="User"> </td>
+		<td> Admin: <input type="radio" name="Role" required='required' value="Admin"> User: <input type="radio" name="Role" required='required' value="User"> </td>
 	</tr>
 	<tr>
 		<td> <input type="submit" name="Create Account" id="Create Account" value="Create Account"></td>
@@ -86,8 +87,12 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 	<form method="GET" id="Login/Register" action="LoginRegisterServlet">
 	<input type="submit" name="Login/Register" value="Login">
 	</form>
+
+<% if(session.getAttribute("userNameTakenError") != null && session.getAttribute("userNameTakenError").equals("True")){ %>
+<p>User Name already in use!</p>
 <% } 
-}%>
+} 
+} %>
 
 
 

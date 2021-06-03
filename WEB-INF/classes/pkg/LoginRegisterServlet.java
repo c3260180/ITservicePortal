@@ -25,6 +25,16 @@ public class LoginRegisterServlet extends HttpServlet
 			request.getSession().setAttribute("displayRequestMainPage", request.getParameter("Login/Register"));
 			response.sendRedirect("MainMenu.jsp");
 		}
+		else if(request.getParameter("Logout") != null)
+		{
+			request.getSession().invalidate();
+			response.sendRedirect("MainMenu.jsp");
+		}
+		else
+		{
+			request.getSession().setAttribute("displayRequestMainPage", null);
+			response.sendRedirect("MainMenu.jsp");
+		}
 
 	}
 
@@ -32,26 +42,67 @@ public class LoginRegisterServlet extends HttpServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException 
 	{
+		
 		if(request.getParameter("Registration") != null)
 		{
-			System.out.println(request.getParameter("UserName"));
-			System.out.println(request.getParameter("Password"));
-			System.out.println(request.getParameter("FirstName"));
-			System.out.println(request.getParameter("LastName"));
-			System.out.println(request.getParameter("Email"));
-			System.out.println(request.getParameter("ContactNumber"));
-			System.out.println(request.getParameter("Role"));
 
 
 			//check the DB if this user name exists 
 
-			//if we can register this name save it in the db 
+			//if the user doesnt already exist we can save the registration
+			if(!DBhandler.findUserByName(request.getParameter("UserName")))
+			{
+				UserBean user = new UserBean();
+				user.setUserName(request.getParameter("UserName"));
+				user.setPassCode(request.getParameter("Password"));
+				user.setFirstName(request.getParameter("FirstName"));
+				user.setLastName(request.getParameter("LastName"));
+				user.setEmail(request.getParameter("Email"));
+				user.setContactNumber(request.getParameter("ContactNumber"));
+				user.setUserRole(request.getParameter("Role"));
+				//if we can register this name save it in the db 
+				DBhandler.saveUser(user);
+				//if save was successful login this account
+				request.getSession().setAttribute("UserName", request.getParameter("UserName"));
+				request.getSession().setAttribute("User", user);
+				response.sendRedirect("UserPage.jsp");
+			}
+			//redirect to mainpage/registrationForm with userName in use error
+			else
+			{
+				request.getSession().setAttribute("displayRequestMainPage", "Register");
+				request.getSession().setAttribute("userNameTakenError", "True");
+				response.sendRedirect("MainMenu.jsp");
+			}
 
-			//if save was successful login this account
 
-			//redirect to userAccountPage if it works 
 
-			//
+		}
+
+		if(request.getParameter("Login") != null)
+		{
+			System.out.println("1");
+
+			//check to see if userName is in the DB 
+			if(DBhandler.findUserByName(request.getParameter("UserName")))
+			{
+				System.out.println("2");
+				//check to see if password entered matches password stored in DB
+				if(DBhandler.login(request.getParameter("UserName"),request.getParameter("Password")) != null)
+				{
+					System.out.println("3");
+					UserBean user = DBhandler.login(request.getParameter("UserName"),request.getParameter("Password"));
+					request.getSession().setAttribute("UserName", request.getParameter("UserName"));
+					request.getSession().setAttribute("User", user);
+					response.sendRedirect("UserPage.jsp");
+					
+				}
+			}
+			else
+			{
+				response.sendRedirect("MainMenu.jsp");
+			}
+
 		}
 	}
 }

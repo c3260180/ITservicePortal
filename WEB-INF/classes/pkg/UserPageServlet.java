@@ -63,7 +63,7 @@ public class UserPageServlet extends HttpServlet
 
 	}
 
-	//handles the Login and Register forms on mainMenu
+	//
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException 
 	{
