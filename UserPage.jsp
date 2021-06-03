@@ -54,6 +54,7 @@
 	<table>
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
 		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
+		<!--<input type="hidden" name="Status" id="Status" required='required' value="New">-->
 		<input type="hidden" name="userAssigned" id="userAssigned" required='required' value="<%=user.getUserName()%>">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
