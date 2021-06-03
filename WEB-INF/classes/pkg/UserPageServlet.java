@@ -46,24 +46,25 @@ public class UserPageServlet extends HttpServlet
 				TicketBean ticket = new TicketBean();
 				ticket.setUser(request.getParameter("userAssigned"));
 				ticket.setKeyword(request.getParameter("Keywords"));
-				ticket.setStatus(request.getParameter("Status"));
+				ticket.setStatus("New");
 				ticket.setTitle(request.getParameter("Title"));
 				ticket.setOpened(request.getParameter("Opened"));
 				ticket.setCategory(request.getParameter("Category"));
 				ticket.setDescription(request.getParameter("Description"));
 
 				//Save it in the db 
-				DBhandler.saveTicket(ticket);
+				if(DBhandler.saveTicket(ticket))
+				{
+					response.sendRedirect("UserPage.jsp");
+				}
 				
-				response.sendRedirect("UserPage.jsp");
 			}
 			//redirect to mainpage/registrationForm with userName in use error
 			else
 			{
 				System.out.println("3");
 				request.getSession().setAttribute("displayRequestMainPage", "CreateTicketForm");
-				request.getSession().setAttribute("userNameTakenError", "True");
-				response.sendRedirect("MainMenu.jsp");
+				response.sendRedirect("UserPage.jsp");
 			}
 		}
 

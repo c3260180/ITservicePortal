@@ -54,16 +54,15 @@
 	<table>
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
 		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
-		<!--<input type="hidden" name="Status" id="Status" required='required' value="New">-->
 		<input type="hidden" name="userAssigned" id="userAssigned" required='required' value="<%=user.getUserName()%>">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
-		Network:<input type="checkbox" name="Category" value="Network"> 
-		Software:<input type="checkbox" name="Category" value="Software"> 
-		Hardware:<input type="checkbox" name="Category" value="Hardware"> 
-		Email:<input type="checkbox" name="Category" value="Email">
-		Account:<input type="checkbox" name="Category" value="Account"> 	
+		Network:<input type="radio" name="Category" value="Network"> 
+		Software:<input type="radio" name="Category" value="Software"> 
+		Hardware:<input type="radio" name="Category" value="Hardware"> 
+		Email:<input type="radio" name="Category" value="Email">
+		Account:<input type="radio" name="Category" value="Account"> 	
 		</td> </tr>
 
 		<tr> <td>Keywords</td> <td> <input type="text" name="Keywords" id="Keywords"  value=""> </td> </tr>

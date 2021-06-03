@@ -11,7 +11,7 @@
 
 <h1> IT Services App </h1>
 
-<% if(session.getAttribute("displayRequestMainPage") == null) { %>
+<%// if(session.getAttribute("displayRequestMainPage") == null) { %>
 <h2> Login/Registration </h2>
 <h3> Create New Account or Login </h3>
 
@@ -20,7 +20,7 @@
 	<input type="submit" name="Login/Register" value="Register">
 </form>
 
-<% } %>
+<%// } %>
 
 <% if(session.getAttribute("displayRequestMainPage") != null)
 {

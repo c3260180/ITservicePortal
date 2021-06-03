@@ -2,15 +2,12 @@ package pkg;
 import javax.sql.*;
 import java.sql.*;
 import java.util.*;
+import java.util.ArrayList; 
 
 public class DBhandler
 {   
 /*
 
-	public static TicketBean loadTickets()
-	{
-
-	}
 
 	public static void saveTickets()
 	{
@@ -237,5 +234,14 @@ public class DBhandler
 		return false;
 
 	}
+
+	public static ArrayList<TicketBean> loadTickets()
+	{
+		String selectByNameQuery = "SELECT * FROM ticket WHERE ticketTitle = ?";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
+		{
+	}
+
 
 }
