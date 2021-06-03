@@ -75,8 +75,6 @@ public class LoginRegisterServlet extends HttpServlet
 				response.sendRedirect("MainMenu.jsp");
 			}
 
-
-
 		}
 
 		if(request.getParameter("Login") != null)

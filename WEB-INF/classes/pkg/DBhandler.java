@@ -51,6 +51,8 @@ public class DBhandler
 		
 	}
 */
+
+//-------------------- User Functions ---------------------------
 	public static boolean saveUser(UserBean user)
 	{
 		String insertQuery = "INSERT INTO userAccount VALUES (?,?,?,?,?,?,?)";
@@ -125,7 +127,7 @@ public class DBhandler
 	}
 
 	public static UserBean login(String userName, String password)
-	{
+	{	
 		String selectQuery = "SELECT * FROM userAccount WHERE userName = ? AND passCode = ?";
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement selectStatement = connection.prepareStatement(selectQuery);)
@@ -164,6 +166,81 @@ public class DBhandler
 			System.err.println(e.getStackTrace());
 		}
 		return null;
+	}
+
+	//-------------------- Ticket Functions ---------------------------
+	public static boolean saveTicket(TicketBean ticket)
+	{
+		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?)";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
+		{
+			//name not found
+			if(!findTicketByTitle(ticket.getTitle()))
+			{
+				insertStatement.setString(1, ticket.getUser());
+				insertStatement.setString(2, ticket.getStatus());
+				insertStatement.setString(3, ticket.getID());
+				insertStatement.setString(4, ticket.getOpened());
+				insertStatement.setString(5, ticket.getTitle());
+				insertStatement.setString(6, ticket.getCategory());
+				insertStatement.setString(7, ticket.getKeyword());
+				insertStatement.setString(7, ticket.getDescription());
+				
+				insertStatement.execute();
+				return true;
+			}
+			//if the name was found
+			else
+			{
+				//may or may not need to implement this
+				return false;
+			}
+		}
+
+		catch(SQLException e)
+		{
+			System.out.println("saveUser() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+
+		return false;
+
+	}
+
+	public static boolean findTicketByTitle(String title)
+	{
+		String selectByNameQuery = "SELECT * FROM ticket WHERE ticketTitle = ?";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
+		{
+			String ticketTitle = title;
+			selectByNameStatement.setString(1, ticketTitle);
+			ResultSet titleResult = selectByNameStatement.executeQuery();
+
+			//userName found 
+			if(titleResult.next())
+			{
+				System.out.println("Title match found");
+				return true;
+			}
+
+			//userName not found
+			else
+			{
+				return false;
+			}
+		}
+
+		catch(SQLException e)
+		{
+			System.out.println("findTicketByTitle() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+		return false;
+
 	}
 
 }

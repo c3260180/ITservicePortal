@@ -26,39 +26,6 @@ public class UserPageServlet extends HttpServlet
 			request.getSession().setAttribute("displayRequestUserPage", request.getParameter("NavBar"));
 			response.sendRedirect("UserPage.jsp");
 
-			/*
-			if(request.getParameter("NavBar").equals("CreateTicket"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("CreateTicket"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//ViewTickets Request
-			if(request.getParameter("NavBar").equals("ViewTickets"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("ViewTickets"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//Knowledge Base Request
-			if(request.getParameter("NavBar").equals("KnowledgeBase"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("KnowledgeBase"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//AccountSettings Request
-			if(request.getParameter("NavBar").equals("AccountSettings"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("AccountSettings"));
-				response.sendRedirect("UserPage.jsp");	
-			}
-			*/
-
 		}
 
 	}
@@ -68,5 +35,40 @@ public class UserPageServlet extends HttpServlet
 	throws ServletException, IOException 
 	{
 		
+		if(request.getParameter("Registration") != null)
+		{
+
+
+			//check the DB if this user name exists 
+
+			//if the 
+			if(!DBhandler.findUserByName(request.getParameter("ticketTitle")))
+			{
+				TicketBean ticket = new TicketBean();
+				ticket.setUserName(request.getParameter("userAssigned"));
+				ticket.setPassCode(request.getParameter("ticketID"));
+				ticket.setFirstName(request.getParameter("ticketKeyword"));
+				ticket.setLastName(request.getParameter("ticketStatus"));
+				ticket.setEmail(request.getParameter("ticketTitle"));
+				ticket.setContactNumber(request.getParameter("ticketOpened"));
+				ticket.setUserRole(request.getParameter("ticketCategory"));
+				ticket.setUserRole(request.getParameter("ticketSubCategory"));
+				ticket.setUserRole(request.getParameter("ticketDescription"));
+
+				//Save it in the db 
+				DBhandler.saveTicket(ticket);
+				//if save was successful login this account
+				request.getSession().setAttribute("UserName", request.getParameter("UserName"));
+				request.getSession().setAttribute("Ticket", ticket);
+				response.sendRedirect("UserPage.jsp");
+			}
+			//redirect to mainpage/registrationForm with userName in use error
+			else
+			{
+				request.getSession().setAttribute("displayRequestMainPage", "Register");
+				request.getSession().setAttribute("userNameTakenError", "True");
+				response.sendRedirect("MainMenu.jsp");
+			}
+		}
 	}
 }
