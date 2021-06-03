@@ -6,10 +6,6 @@ import java.util.*;
 public class DBhandler
 {   
 /*
-	public static UserBean loadUser(String userName)
-	{
-		return 
-	}
 
 	public static TicketBean loadTickets()
 	{

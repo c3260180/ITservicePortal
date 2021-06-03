@@ -25,7 +25,6 @@
 		<th>Create Ticket</th>
 		<th>View Tickets</th>
 		<th>Knowledge Base</th>
-		<th>Account Settings</th>
 	</tr>
 	<tr>
 		<td>
@@ -41,11 +40,6 @@
 		<td>
 			<form method="GET" id="NavBarKnowledgeBase" action="UserPageServlet">
 			<input type="submit" name="NavBar" value="KnowledgeBase">
-			</form>
-		</td>
-		<td>
-			<form method="GET" id="NavBarAccountSettings" action="UserPageServlet">
-			<input type="submit" name="NavBar" value="AccountSettings">
 			</form>
 		</td>
 	</tr>
@@ -122,6 +116,7 @@
 	<th>Ticket Creation</th>
 	<th>Keywords</th>
 	<th>Description</th>
+	<th></th>
 	</tr>
 	
 </table>
@@ -130,19 +125,47 @@
 
 <% if(session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
 <div id="ViewknowledgeBaseView">
-	<h2>KnowledgeBase</h2>
+	<h2>Knowledge Base</h2>
+<table>
+	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
+	<tr>
+	<th>Keyword Search</th>
+	<th>Category Filter</th>
+	</tr>
 
+	<tr>
+
+		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
+		<td> 
+		Network:<input type="checkbox" name="CategoryFilter"  value="Network"> 
+		Software:<input type="checkbox" name="CategoryFilter" value="Software"> 
+		Hardware:<input type="checkbox" name="CategoryFilter" value="Hardware"> 
+		Email:<input type="checkbox" name="CategoryFilter"  value="Email"> <br>
+		Account:<input type="checkbox" name="CategoryFilter" value="Account"> 	
+		</td>
+	</tr>
+
+</table>
+<input type="submit" name="Create Ticket" id="ApplyFilters" value="ApplyFilters"> <input type='reset' value='Clear' />
+</form>
+
+<table>
+	<tr>
+	<th>Title</th>
+	<th>Category</th>
+	<th>Ticket Creation</th>
+	<th>Ticket Completion</th>
+	<th>Keywords</th>
+	<th>Description</th>
+	<th>Resolution</th>
+	<th></th>
+	</tr>
+	
+</table>
 </div>
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("AccountSettings")) { %>
-<div id="AccountSettingsView">
-	<h2>Account Settings</h2>
-
-</div>
-<% 
-}
-} %>
+<% } %>
 
 
 

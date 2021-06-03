@@ -95,9 +95,16 @@ public class LoginRegisterServlet extends HttpServlet
 					response.sendRedirect("UserPage.jsp");
 					
 				}
+
+					else
+					{
+						request.getSession().setAttribute("LoginError", "True");
+						response.sendRedirect("MainMenu.jsp");
+					}
 			}
 			else
 			{
+				request.getSession().setAttribute("LoginError", "True");
 				response.sendRedirect("MainMenu.jsp");
 			}
 
