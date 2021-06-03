@@ -10,6 +10,7 @@ public class UserBean {
     private String passCode;
     private String firstName;
     private String lastName;
+    private String email;
     private String contactNumber;
     private String userRole;
 
@@ -43,14 +44,19 @@ public class UserBean {
         this.lastName = lastName;
     }
 
-    public void contactNumber(String contactNumber)
+    public void setContactNumber(String contactNumber)
     {
         this.contactNumber = contactNumber;
     }
 
-    public void userRole(String userRole)
+    public void setUserRole(String userRole)
     {
         this.userRole = userRole;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
     }
 
     public String getUserName()
@@ -83,6 +89,9 @@ public class UserBean {
         return userRole;
     }
 
-
-
+     public String getEmail()
+    {
+        return email;
+    }
+    
 }
