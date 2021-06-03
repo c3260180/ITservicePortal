@@ -26,39 +26,6 @@ public class UserPageServlet extends HttpServlet
 			request.getSession().setAttribute("displayRequestUserPage", request.getParameter("NavBar"));
 			response.sendRedirect("UserPage.jsp");
 
-			/*
-			if(request.getParameter("NavBar").equals("CreateTicket"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("CreateTicket"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//ViewTickets Request
-			if(request.getParameter("NavBar").equals("ViewTickets"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("ViewTickets"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//Knowledge Base Request
-			if(request.getParameter("NavBar").equals("KnowledgeBase"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("KnowledgeBase"));
-				response.sendRedirect("UserPage.jsp");
-			}
-
-			//AccountSettings Request
-			if(request.getParameter("NavBar").equals("AccountSettings"))
-			{
-				System.out.println(request.getParameter("NavBar"));
-				request.getSession().setAttribute("displayRequestUserPage", request.getParameter("AccountSettings"));
-				response.sendRedirect("UserPage.jsp");	
-			}
-			*/
-
 		}
 
 	}

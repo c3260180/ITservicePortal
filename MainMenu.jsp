@@ -10,7 +10,6 @@
 
 
 <h1> IT Services App </h1>
-<a href="UserPage.jsp"> testing: entry point to UserPage</a>
 
 <% if(session.getAttribute("displayRequestMainPage") == null) { %>
 <h2> Login/Registration </h2>
@@ -39,6 +38,9 @@ if(session.getAttribute("displayRequestMainPage").equals("Login")) { %>
 	<form method="GET" id="Login/Register" action="LoginRegisterServlet">
 	<input type="submit" name="Login/Register" value="Register">
 	</form>
+	<% if(session.getAttribute("LoginError") != null && session.getAttribute("LoginError").equals("True")) { %>
+	<p>Login Error</p>
+	<%	} %>
 
 <% } %>
 
