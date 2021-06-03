@@ -25,8 +25,7 @@ ticketKeyword VARCHAR (80),
 ticketStatus VARCHAR (80),
 ticketTitle VARCHAR(80),
 ticketOpened VARCHAR (80),
-ticketCatergory VARCHAR(80),
-ticketSubCatergory VARCHAR (80),
+ticketCategory VARCHAR(80),
 ticketDescription VARCHAR(500),
 );
 
@@ -34,7 +33,7 @@ CREATE TABLE knowledgeBase (
 
 kbTitle VARCHAR (80),
 kbCategory VARCHAR (80),
-kbTicketSubCatergory VARCHAR (80),
+kbTicketSubCategory VARCHAR (80),
 kbTicketOpenedTime VARCHAR (80),
 kbTicketClosedTime VARCHAR (80),
 kbUsername VARCHAR (80),
@@ -45,3 +44,5 @@ kbResolution VARCHAR (500)
 );
 
 DROP TABLE ticket, userAccount, knowledgeBase;
+
+SELECT * FROM ticket;

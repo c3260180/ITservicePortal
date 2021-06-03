@@ -175,18 +175,18 @@ public class DBhandler
 			if(!findTicketByTitle(ticket.getTitle()))
 			{
 				insertStatement.setString(1, ticket.getUser());
-				insertStatement.setString(2, ticket.getStatus());
-				insertStatement.setString(3, ticket.getID());
-				insertStatement.setString(4, ticket.getOpened());
+				insertStatement.setString(2, ticket.getID());
+				insertStatement.setString(3, ticket.getKeyword());
+				insertStatement.setString(4, ticket.getStatus());
 				insertStatement.setString(5, ticket.getTitle());
-				insertStatement.setString(6, ticket.getCategory());
-				insertStatement.setString(7, ticket.getKeyword());
+				insertStatement.setString(6, ticket.getOpened());
+				insertStatement.setString(7, ticket.getCategory());
 				insertStatement.setString(8, ticket.getDescription());
 				
 				insertStatement.execute();
 				return true;
 			}
-			//if the name was found
+			//if the ticket was found
 			else
 			{
 				//may or may not need to implement this
