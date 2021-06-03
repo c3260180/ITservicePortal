@@ -45,19 +45,16 @@ public class UserPageServlet extends HttpServlet
 				System.out.println("2");
 				TicketBean ticket = new TicketBean();
 				ticket.setUser(request.getParameter("userAssigned"));
-				//ticket.setID(request.getParameter("ticketID"));
-				ticket.setKeyword(request.getParameter("ticketKeyword"));
-				ticket.setStatus(request.getParameter("ticketStatus"));
-				ticket.setTitle(request.getParameter("ticketTitle"));
-				ticket.setOpened(request.getParameter("ticketOpened"));
-				ticket.setCategory(request.getParameter("ticketCategory"));
-				ticket.setDescription(request.getParameter("ticketDescription"));
+				ticket.setKeyword(request.getParameter("Keywords"));
+				ticket.setStatus(request.getParameter("Status"));
+				ticket.setTitle(request.getParameter("Title"));
+				ticket.setOpened(request.getParameter("Opened"));
+				ticket.setCategory(request.getParameter("Category"));
+				ticket.setDescription(request.getParameter("Description"));
 
 				//Save it in the db 
 				DBhandler.saveTicket(ticket);
-				//if save was successful login this account
-				//request.getSession().setAttribute("UserName", request.getParameter("UserName"));
-				//request.getSession().setAttribute("Ticket", ticket);
+				
 				response.sendRedirect("UserPage.jsp");
 			}
 			//redirect to mainpage/registrationForm with userName in use error

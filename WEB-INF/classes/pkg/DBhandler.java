@@ -167,7 +167,7 @@ public class DBhandler
 	//-------------------- Ticket Functions ---------------------------
 	public static boolean saveTicket(TicketBean ticket)
 	{
-		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?)";
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
 		{
@@ -175,13 +175,12 @@ public class DBhandler
 			if(!findTicketByTitle(ticket.getTitle()))
 			{
 				insertStatement.setString(1, ticket.getUser());
-				insertStatement.setString(2, ticket.getID());
-				insertStatement.setString(3, ticket.getKeyword());
-				insertStatement.setString(4, ticket.getStatus());
-				insertStatement.setString(5, ticket.getTitle());
-				insertStatement.setString(6, ticket.getOpened());
-				insertStatement.setString(7, ticket.getCategory());
-				insertStatement.setString(8, ticket.getDescription());
+				insertStatement.setString(2, ticket.getKeyword());
+				insertStatement.setString(3, ticket.getStatus());
+				insertStatement.setString(4, ticket.getTitle());
+				insertStatement.setString(5, ticket.getOpened());
+				insertStatement.setString(6, ticket.getCategory());
+				insertStatement.setString(7, ticket.getDescription());
 				
 				insertStatement.execute();
 				return true;
