@@ -35,7 +35,7 @@ public class UserPageServlet extends HttpServlet
 	throws ServletException, IOException 
 	{
 		
-		if(request.getParameter("NewTicket") == null)
+		if(request.getParameter("NewTicket") != null)
 		{
 			//check the DB if the ticket exists
 			System.out.println("1");
@@ -45,7 +45,7 @@ public class UserPageServlet extends HttpServlet
 				System.out.println("2");
 				TicketBean ticket = new TicketBean();
 				ticket.setUser(request.getParameter("userAssigned"));
-				ticket.setID(request.getParameter("ticketID"));
+				//ticket.setID(request.getParameter("ticketID"));
 				ticket.setKeyword(request.getParameter("ticketKeyword"));
 				ticket.setStatus(request.getParameter("ticketStatus"));
 				ticket.setTitle(request.getParameter("ticketTitle"));
@@ -56,8 +56,8 @@ public class UserPageServlet extends HttpServlet
 				//Save it in the db 
 				DBhandler.saveTicket(ticket);
 				//if save was successful login this account
-				request.getSession().setAttribute("UserName", request.getParameter("UserName"));
-				request.getSession().setAttribute("Ticket", ticket);
+				//request.getSession().setAttribute("UserName", request.getParameter("UserName"));
+				//request.getSession().setAttribute("Ticket", ticket);
 				response.sendRedirect("UserPage.jsp");
 			}
 			//redirect to mainpage/registrationForm with userName in use error
@@ -69,7 +69,9 @@ public class UserPageServlet extends HttpServlet
 				response.sendRedirect("MainMenu.jsp");
 			}
 		}
-		else {
+
+		else 
+		{
 
 			System.out.println("4");
 		}

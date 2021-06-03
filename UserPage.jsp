@@ -54,6 +54,7 @@
 	<table>
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
 		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
+		<input type="hidden" name="userAssigned" id="userAssigned" required='required' value="<%=user.getUserName()%>">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
@@ -65,7 +66,7 @@
 		</td> </tr>
 
 		<tr> <td>Keywords</td> <td> <input type="text" name="Keywords" id="Keywords"  value=""> </td> </tr>
-		<tr> <td>Description</td> <td> <textarea name="Description" id="Description" form="CreateTicketForm" > Please provide a description of the problem here...</textarea> </td> </tr>
+		<tr> <td>Description</td> <td> <textarea name="Description" id="Description" required='required' form="CreateTicketForm" > Please provide a description of the problem here...</textarea> </td> </tr>
 
 		<tr>
 		<td></td>
