@@ -35,13 +35,14 @@ public class UserPageServlet extends HttpServlet
 	throws ServletException, IOException 
 	{
 		
-		if(request.getParameter("Registration") != null)
+		if(request.getParameter("NewTicket") == null)
 		{
 			//check the DB if the ticket exists
-
+			System.out.println("1");
 			//if the ticket ticket exist save it on the db
-			if(!DBhandler.findTicketByTitle(request.getParameter("ticketTitle")))
+			if(!DBhandler.findTicketByTitle(request.getParameter("Title")))
 			{
+				System.out.println("2");
 				TicketBean ticket = new TicketBean();
 				ticket.setUser(request.getParameter("userAssigned"));
 				ticket.setID(request.getParameter("ticketID"));
@@ -62,10 +63,16 @@ public class UserPageServlet extends HttpServlet
 			//redirect to mainpage/registrationForm with userName in use error
 			else
 			{
-				request.getSession().setAttribute("displayRequestMainPage", "Register");
+				System.out.println("3");
+				request.getSession().setAttribute("displayRequestMainPage", "CreateTicketForm");
 				request.getSession().setAttribute("userNameTakenError", "True");
 				response.sendRedirect("MainMenu.jsp");
 			}
 		}
+		else {
+
+			System.out.println("4");
+		}
+
 	}
 }

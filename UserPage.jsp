@@ -53,14 +53,15 @@
 	<h2>Create Ticket</h2>
 	<table>
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
+		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
-		Network:<input type="checkbox" name="Category"  required='required' value="Network"> 
-		Software:<input type="checkbox" name="Category" required='required' value="Software"> 
-		Hardware:<input type="checkbox" name="Category" required='required' value="Hardware"> 
-		Email:<input type="checkbox" name="Category" required='required' value="Email">
-		Account:<input type="checkbox" name="Category" required='required' value="Account"> 	
+		Network:<input type="checkbox" name="Category" value="Network"> 
+		Software:<input type="checkbox" name="Category" value="Software"> 
+		Hardware:<input type="checkbox" name="Category" value="Hardware"> 
+		Email:<input type="checkbox" name="Category" value="Email">
+		Account:<input type="checkbox" name="Category" value="Account"> 	
 		</td> </tr>
 
 		<tr> <td>Keywords</td> <td> <input type="text" name="Keywords" id="Keywords"  value=""> </td> </tr>

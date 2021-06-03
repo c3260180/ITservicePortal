@@ -167,7 +167,7 @@ public class DBhandler
 	//-------------------- Ticket Functions ---------------------------
 	public static boolean saveTicket(TicketBean ticket)
 	{
-		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?)";
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
 		{
@@ -181,7 +181,7 @@ public class DBhandler
 				insertStatement.setString(5, ticket.getTitle());
 				insertStatement.setString(6, ticket.getCategory());
 				insertStatement.setString(7, ticket.getKeyword());
-				insertStatement.setString(7, ticket.getDescription());
+				insertStatement.setString(8, ticket.getDescription());
 				
 				insertStatement.execute();
 				return true;
@@ -196,7 +196,7 @@ public class DBhandler
 
 		catch(SQLException e)
 		{
-			System.out.println("saveUser() failed");
+			System.out.println("saveTicket() failed");
 			System.err.println(e.getMessage());
 			System.err.println(e.getStackTrace());
 		}
