@@ -211,14 +211,14 @@ public class DBhandler
 			selectByNameStatement.setString(1, ticketTitle);
 			ResultSet titleResult = selectByNameStatement.executeQuery();
 
-			//userName found 
+			// If ticket found 
 			if(titleResult.next())
 			{
 				System.out.println("Title match found");
 				return true;
 			}
 
-			//userName not found
+			//If ticket not found
 			else
 			{
 				return false;
