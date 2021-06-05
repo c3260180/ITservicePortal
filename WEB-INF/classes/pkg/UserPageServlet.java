@@ -62,6 +62,8 @@ public class UserPageServlet extends HttpServlet
 				//Save it in the db 
 				if(DBhandler.saveTicket(ticket))
 				{
+					request.getSession().setAttribute("displayRequestMainPage", "CreateTicketForm");
+					request.getSession().setAttribute("saveTicketSuccess", "True");
 					response.sendRedirect("UserPage.jsp");
 				}
 				
@@ -70,6 +72,7 @@ public class UserPageServlet extends HttpServlet
 			else
 			{
 				request.getSession().setAttribute("displayRequestMainPage", "CreateTicketForm");
+				request.getSession().setAttribute("saveTicketSuccess", "False");
 				response.sendRedirect("UserPage.jsp");
 			}
 		}

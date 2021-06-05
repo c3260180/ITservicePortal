@@ -255,7 +255,6 @@ public class DBhandler
 				tmpTicket.setCategory(allTicketsResults.getString(6));
 				tmpTicket.setDescription(allTicketsResults.getString(7));
 				tickets.add(tmpTicket);
-				//fetch the col data for each row and store it in the ArrayList that will be returned at the end of the
 
 			}
 		}

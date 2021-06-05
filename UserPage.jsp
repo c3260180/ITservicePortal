@@ -1,6 +1,7 @@
 <%@page import="pkg.UserBean" %>
 <%@page import="pkg.TicketBean" %>
 <%@page import="java.util.ArrayList" %>
+<%@page import="java.util.Date" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -13,7 +14,9 @@
 <body>
 
 <h1> IT Services App </h1>
-<% UserBean user = (UserBean) session.getAttribute("User"); %>
+<% UserBean user = (UserBean) session.getAttribute("User");
+Date date = new Date();
+ %>
 
 <div id="fixedDisplay">
 
@@ -58,7 +61,7 @@
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
 		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
 		<input type="hidden" name="userAssigned" id="userAssigned" required='required' value="<%=user.getUserName()%>">
-		<input type="hidden" name="CreationTime" id="CreationTime" required='required' value="return getTimeFormated()">
+		<input type="hidden" name="CreationTime" id="CreationTime" required='required' value="<%=date.toString()%>">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
@@ -77,6 +80,15 @@
 		<td> <input type="submit" name="Create Ticket" id="CreateTicket" value="Create Ticket"> <input type='reset' value='Clear' /> </td> </tr>
 	</form>
 	</table>
+<% if(session.getAttribute("saveTicketSuccess") != null && session.getAttribute("saveTicketSuccess").equals("True"))
+	{ %>
+	<p>Ticket Was Created!</p>
+<% } %>
+
+<% if(session.getAttribute("saveTicketSuccess") != null && session.getAttribute("saveTicketSuccess").equals("False"))
+	{ %>
+	<p>Ticket Creation Error</p>
+<% } %>
 </div>
 <% } %>
 
