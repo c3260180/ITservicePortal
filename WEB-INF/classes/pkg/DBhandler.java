@@ -237,10 +237,35 @@ public class DBhandler
 
 	public static ArrayList<TicketBean> loadTickets()
 	{
-		String selectByNameQuery = "SELECT * FROM ticket WHERE ticketTitle = ?";
+		ArrayList<TicketBean> tickets = new ArrayList<TicketBean>();
+		String selectAllQuery = "SELECT * FROM ticket";
 		try(Connection connection = ConfigBean.getConnection();
-			PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
+			PreparedStatement selectAllStatement = connection.prepareStatement(selectAllQuery);)
 		{
+			ResultSet allTicketsResults = selectAllStatement.executeQuery();
+			while(allTicketsResults.next())
+			{
+				System.out.println();
+				TicketBean tmpTicket = new TicketBean();
+				tmpTicket.setUser(allTicketsResults.getString(1));
+				tmpTicket.setKeyword(allTicketsResults.getString(2));
+				tmpTicket.setStatus(allTicketsResults.getString(3));
+				tmpTicket.setTitle(allTicketsResults.getString(4));
+				tmpTicket.setOpened(allTicketsResults.getString(5));
+				tmpTicket.setCategory(allTicketsResults.getString(6));
+				tmpTicket.setDescription(allTicketsResults.getString(7));
+				tickets.add(tmpTicket);
+				//fetch the col data for each row and store it in the ArrayList that will be returned at the end of the
+
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println("loadTickets() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+		return tickets;
 	}
 
 

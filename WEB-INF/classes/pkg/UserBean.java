@@ -24,72 +24,72 @@ public class UserBean {
         userRole = "";
     }
 
-    public void setUserName(String userName)
+    public synchronized void setUserName(String userName)
     {
         this.userName = userName;
     }
 
-    public void setPassCode(String passCode)
+    public synchronized void setPassCode(String passCode)
     {
         this.passCode = passCode;
     }
 
-    public void setFirstName(String firstName)
+    public synchronized void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName)
+    public synchronized void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
 
-    public void setContactNumber(String contactNumber)
+    public synchronized void setContactNumber(String contactNumber)
     {
         this.contactNumber = contactNumber;
     }
 
-    public void setUserRole(String userRole)
+    public synchronized void setUserRole(String userRole)
     {
         this.userRole = userRole;
     }
 
-    public void setEmail(String email)
+    public synchronized void setEmail(String email)
     {
         this.email = email;
     }
 
-    public String getUserName()
+    public synchronized String getUserName()
     {
         return userName;
     }
 
-    public String getPassCode()
+    public synchronized String getPassCode()
     {
         return passCode;
     }
 
-    public String getFirstName()
+    public synchronized String getFirstName()
     {
         return firstName;
     }
 
-    public String getLastName()
+    public synchronized String getLastName()
     {
         return lastName;
     }
 
-    public String getContactNumber()
+    public synchronized String getContactNumber()
     {
         return contactNumber;
     }
 
-    public String getUserRole()
+    public synchronized String getUserRole()
     {
         return userRole;
     }
 
-     public String getEmail()
+     public synchronized String getEmail()
     {
         return email;
     }

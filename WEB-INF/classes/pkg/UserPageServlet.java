@@ -24,6 +24,14 @@ public class UserPageServlet extends HttpServlet
 		{
 			
 			request.getSession().setAttribute("displayRequestUserPage", request.getParameter("NavBar"));
+
+			if(request.getParameter("NavBar").equals("ViewTickets"))
+			{
+				ArrayList<TicketBean> tickets = DBhandler.loadTickets();
+				System.out.println(tickets.size());
+				request.getSession().setAttribute("TicketList", tickets);
+
+			}
 			response.sendRedirect("UserPage.jsp");
 
 		}
@@ -42,13 +50,12 @@ public class UserPageServlet extends HttpServlet
 			//if the ticket ticket exist save it on the db
 			if(!DBhandler.findTicketByTitle(request.getParameter("Title")))
 			{
-				System.out.println("2");
 				TicketBean ticket = new TicketBean();
 				ticket.setUser(request.getParameter("userAssigned"));
 				ticket.setKeyword(request.getParameter("Keywords"));
 				ticket.setStatus("New");
 				ticket.setTitle(request.getParameter("Title"));
-				ticket.setOpened(request.getParameter("Opened"));
+				ticket.setOpened(request.getParameter("CreationTime"));
 				ticket.setCategory(request.getParameter("Category"));
 				ticket.setDescription(request.getParameter("Description"));
 
@@ -59,19 +66,12 @@ public class UserPageServlet extends HttpServlet
 				}
 				
 			}
-			//redirect to mainpage/registrationForm with userName in use error
+
 			else
 			{
-				System.out.println("3");
 				request.getSession().setAttribute("displayRequestMainPage", "CreateTicketForm");
 				response.sendRedirect("UserPage.jsp");
 			}
-		}
-
-		else 
-		{
-
-			System.out.println("4");
 		}
 
 	}

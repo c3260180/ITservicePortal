@@ -1,4 +1,6 @@
 <%@page import="pkg.UserBean" %>
+<%@page import="pkg.TicketBean" %>
+<%@page import="java.util.ArrayList" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -6,6 +8,7 @@
 <head>
 	<title>IT Services App</title>
 	<link href='ITServicesStyleSheet.css' rel='stylesheet' type='text/css'>
+	<script type='text/javascript' src="validationScripts.js"></script>
 </head>
 <body>
 
@@ -48,13 +51,14 @@
 </div>
 
 <% if(session.getAttribute("displayRequestUserPage") != null) {  %>
-<%if(session.getAttribute("displayRequestUserPage").equals("CreateTicket")) { %>
+<% if(session.getAttribute("displayRequestUserPage").equals("CreateTicket")) { %>
 <div id="CreateTicketView">
 	<h2>Create Ticket</h2>
 	<table>
 		<form  method="POST" id="CreateTicketForm" action="UserPageServlet">
 		<input type="hidden" name="NewTicket" id="NewTicket" required='required' value="NewTicket">
 		<input type="hidden" name="userAssigned" id="userAssigned" required='required' value="<%=user.getUserName()%>">
+		<input type="hidden" name="CreationTime" id="CreationTime" required='required' value="return getTimeFormated()">
 		<tr> <td>Title</td> <td> <input type="text" name="Title" id="Title" required='required' value=""> </td> </tr>
 
 		<tr> <td>Category</td> <td> 
@@ -79,7 +83,7 @@
 <% if(session.getAttribute("displayRequestUserPage").equals("ViewTickets")) { %>
 <div id="ViewTicketsView">
 	<h2>View Tickets</h2>
-
+<% ArrayList<TicketBean> tickets = (ArrayList<TicketBean>) session.getAttribute("TicketList"); %>
 <table>
 	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
 	<tr>
@@ -96,7 +100,11 @@
 		Completed:<input type="radio" name="Filter Status" id="FilterStatus" value="Hardware"> 
 		Resolved:<input type="radio" name="Filter Status" id="FilterStatus" value="Email"> <br> 	
 		</td>
-		<td>placeholder</td>
+		<td>
+			<form method="GET" id="SortByStatus" action="LoginRegisterServlet">
+			<input type="submit" name="SortByStatus" id="SortByStatus" value="Sort">
+			</form>
+		</td>
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
 		Network:<input type="checkbox" name="CategoryFilter"  value="Network"> 
@@ -120,7 +128,19 @@
 	<th>Description</th>
 	<th></th>
 	</tr>
-	
+<% for(int i = 0; i < tickets.size(); i++ )
+{ %>
+<tr>
+	<td><%= tickets.get(i).getTitle()%></td>
+	<td><%= tickets.get(i).getStatus()%></td>
+	<td><%= tickets.get(i).getCategory()%></td>
+	<td><%= tickets.get(i).getOpened() %></td>
+	<td><%= tickets.get(i).getKeyword()%></td>
+	<td><%= tickets.get(i).getDescription()%></td>
+	<td>View Ticket</td>
+</tr>
+
+<% } %>
 </table>
 </div>
 <% } %>
@@ -165,11 +185,10 @@
 	
 </table>
 </div>
-<% } %>
-
-<% } %>
+<% } } %>
 
 
+<p id="Time"></p>
 
 </body>
 </html>
