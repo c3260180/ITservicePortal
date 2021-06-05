@@ -28,105 +28,33 @@ public class UserPageServlet extends HttpServlet
 			if(request.getParameter("NavBar").equals("ViewTickets"))
 			{
 				ArrayList<TicketBean> tickets = DBhandler.loadTickets();
+				System.out.println(tickets.size());
 				request.getSession().setAttribute("TicketList", tickets);
-			}
 
+			}
+			
 			if(request.getParameter("NavBar").equals("CreateTicket"))
 			{
 				request.getSession().setAttribute("saveTicketSuccess", null);
 			}
+
 			response.sendRedirect("UserPage.jsp");
+
+			/*if(request.getParameter("NavBar").equals("KnowledgeBase"))
+			{
+				ArrayList<KnowledgeBaseBean> items = DBhandler.loadKbItems();
+				System.out.println(items.size());
+				request.getSession().setAttribute("KbList", items);
+			}*/
 
 		}
 
 		if(request.getParameter("ApplyFilters") != null || request.getParameter("SortByStatus") != null)
 		{
-			if(request.getParameter("ApplyFilters") != null && request.getParameter("ApplyFilters").equals("ApplyFilters"))
-			{
-				//status filter  
-				if(request.getParameter("StatusFilter") != null )
-				{
-					ArrayList<TicketBean> tmpTickets =  DBhandler.loadTickets();
-					ArrayList<TicketBean> filteredTickets = new ArrayList<TicketBean>();
-					System.out.println(tmpTickets.get(0));
-					if(request.getParameter("StatusFilter").equals("New"))
-					{
-
-						for(int i = 0; i < tmpTickets.size(); i++)
-						{
-							if(tmpTickets.get(i).getStatus().equals("New"))
-							{
-								filteredTickets.add(tmpTickets.get(i));
-							}
-							
-						}
-						request.getSession().setAttribute("TicketList", filteredTickets);
-						response.sendRedirect("UserPage.jsp");
-					}
-
-					if(request.getParameter("StatusFilter").equals("InProgress"))
-					{
-
-						
-						for(int i = 0; i < tmpTickets.size(); i++)
-						{
-							if(tmpTickets.get(i).getStatus().equals("InProgress"))
-							{
-								filteredTickets.add(tmpTickets.get(i));
-							}
-							
-						}
-						request.getSession().setAttribute("TicketList", filteredTickets);
-						response.sendRedirect("UserPage.jsp");
-					}
-
-					if(request.getParameter("StatusFilter").equals("Completed"))
-					{
-						for(int i = 0; i < tmpTickets.size(); i++)
-						{
-							if(tmpTickets.get(i).getStatus().equals("InProgress"))
-							{
-								filteredTickets.add(tmpTickets.get(i));
-							}
-							
-						}
-						request.getSession().setAttribute("TicketList", filteredTickets);
-						response.sendRedirect("UserPage.jsp");
-					}
-
-					if(request.getParameter("StatusFilter").equals("Resolved"))
-					{
-						for(int i = 0; i < tmpTickets.size(); i++)
-						{
-							if(tmpTickets.get(i).getStatus().equals("InProgress"))
-							{
-								filteredTickets.add(tmpTickets.get(i));
-							}
-							
-						}
-						request.getSession().setAttribute("TicketList", filteredTickets);
-						response.sendRedirect("UserPage.jsp");
-					}
-				}
-				//keyword search
-				if(request.getParameter("ApplyFilters") != null && request.getParameter("ApplyFilters").equals("ApplyFilters"))
-				{
-
-				}
-				//category filter
-				if(request.getParameter("ApplyFilters") != null && request.getParameter("ApplyFilters").equals("ApplyFilters"))
-				{
-
-				}
-			}
-
-			if(request.getParameter("SortByStatus") != null)
-			{
-				
-			}
+			System.out.println("122222");
 		}
 
-		if(request.getParameter("ViewTicket") != null && request.getParameter("ViewTicket").equals("ViewTicket"))
+		if(request.getParameter("ViewTicket") != null )
 		{
 			System.out.println(request.getParameter("TicketToOpen"));
 			ArrayList<TicketBean> tickets = DBhandler.loadTickets();
@@ -147,6 +75,7 @@ public class UserPageServlet extends HttpServlet
 		if(request.getParameter("NewTicket") != null)
 		{
 			//check the DB if the ticket exists
+			System.out.println("1");
 			//if the ticket ticket exist save it on the db
 			if(!DBhandler.findTicketByTitle(request.getParameter("Title")))
 			{
@@ -176,6 +105,5 @@ public class UserPageServlet extends HttpServlet
 				response.sendRedirect("UserPage.jsp");
 			}
 		}
-
 	}
 }

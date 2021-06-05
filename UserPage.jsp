@@ -1,5 +1,6 @@
 <%@page import="pkg.UserBean" %>
 <%@page import="pkg.TicketBean" %>
+<%@page import="pkg.KnowledgeBaseBean" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.Date" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -163,6 +164,7 @@ Date date = new Date();
 <% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
 <div id="ViewknowledgeBaseView">
 	<h2>Knowledge Base</h2>
+	<% ArrayList<KnowledgeBaseBean> items = (ArrayList<KnowledgeBaseBean>) session.getAttribute("KbList"); %>
 <table>
 	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
 	<tr>
@@ -171,7 +173,6 @@ Date date = new Date();
 	</tr>
 
 	<tr>
-
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
 		Network:<input type="checkbox" name="CategoryFilter"  value="Network"> 
