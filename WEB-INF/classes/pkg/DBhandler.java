@@ -250,8 +250,8 @@ public class DBhandler
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
 		{
-			//Ticket not found
-			if(!findTicketByTitle(item.getTitle()))
+			//Kb item not found
+			if(!findKbItem(item.getTitle()))
 			{
 				insertStatement.setString(1, item.getUser());
 				insertStatement.setString(4, item.getTitle());
@@ -266,7 +266,7 @@ public class DBhandler
 				insertStatement.execute();
 				return true;
 			}
-			//if the ticket was found
+			//if the kb item was found
 			else
 			{
 				//may or may not need to implement this
@@ -295,14 +295,14 @@ public class DBhandler
 			selectByNameStatement.setString(1, kbTitle);
 			ResultSet kbResult = selectByNameStatement.executeQuery();
 
-			// If ticket found 
+			// If kb item found 
 			if(kbResult.next())
 			{
 				System.out.println("Title match found");
 				return true;
 			}
 
-			//If ticket not found
+			//If kb item not found
 			else
 			{
 				return false;
