@@ -164,7 +164,7 @@ public class DBhandler
 	//-------------------- Ticket Functions ---------------------------
 	public static boolean saveTicket(TicketBean ticket)
 	{
-		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO ticket VALUES (?,?,?,?,?,?,?,?)";
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
 		{
@@ -178,6 +178,7 @@ public class DBhandler
 				insertStatement.setString(5, ticket.getOpened());
 				insertStatement.setString(6, ticket.getCategory());
 				insertStatement.setString(7, ticket.getDescription());
+				insertStatement.setString(8, ticket.getComment());
 				
 				insertStatement.execute();
 				return true;
@@ -243,19 +244,19 @@ public class DBhandler
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement selectAllStatement = connection.prepareStatement(selectAllQuery);)
 		{
-			ResultSet allTicketsResults = selectAllStatement.executeQuery();
-			while(allTicketsResults.next())
+			ResultSet allItemResults = selectAllStatement.executeQuery();
+			while(allItemResults.next())
 			{
 				System.out.println();
-				TicketBean tmpTicket = new TicketBean();
-				tmpTicket.setUser(allTicketsResults.getString(1));
-				tmpTicket.setKeyword(allTicketsResults.getString(2));
-				tmpTicket.setStatus(allTicketsResults.getString(3));
-				tmpTicket.setTitle(allTicketsResults.getString(4));
-				tmpTicket.setOpened(allTicketsResults.getString(5));
-				tmpTicket.setCategory(allTicketsResults.getString(6));
-				tmpTicket.setDescription(allTicketsResults.getString(7));
-				tickets.add(tmpTicket);
+				TicketBean tempItems = new TicketBean();
+				tempItems.setUser(allItemResults.getString(1));
+				tempItems.setKeyword(allItemResults.getString(2));
+				tempItems.setStatus(allItemResults.getString(3));
+				tempItems.setTitle(allItemResults.getString(4));
+				tempItems.setOpened(allItemResults.getString(5));
+				tempItems.setCategory(allItemResults.getString(6));
+				tempItems.setDescription(allItemResults.getString(7));
+				tickets.add(tempItems);
 
 			}
 		}
@@ -268,5 +269,113 @@ public class DBhandler
 		return tickets;
 	}
 
+	//-------------------- Knowledge Base Functions ---------------------------
+	public static boolean saveEntry(KnowledgeBaseBean item)
+	{
+	String insertQuery = "INSERT INTO knoewledgeBase VALUES (?,?,?,?,?,?,?,?,?)";
+	try(Connection connection = ConfigBean.getConnection();
+		PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
+	{
+		//Kb item not found
+		if(!findKbItem(item.getTitle()))
+		{
+			insertStatement.setString(1, item.getUser());
+			insertStatement.setString(2, item.getTitle());
+			insertStatement.setString(3, item.getCategory());
+			insertStatement.setString(4, item.getKbOpened());
+			insertStatement.setString(5, item.getKbClosed());
+			insertStatement.setString(6, item.getDescription());
+			insertStatement.setString(7, item.getKeyword());
+			insertStatement.setString(8, item.getKbComment());
+			insertStatement.setString(9, item.getResolution());
+			
+			insertStatement.execute();
+			return true;
+		}
+		//if the kb item was found
+		else
+		{
+			//may or may not need to implement this
+			return false;
+		}
+	}
 
+	catch(SQLException e)
+	{
+		System.out.println("saveEntry() failed");
+		System.err.println(e.getMessage());
+		System.err.println(e.getStackTrace());
+	}
+
+	return false;
+
+	}
+
+	public static boolean findKbItem(String kbItemTitle)
+	{
+	String selectByNameQuery = "SELECT * FROM knowledgeBase WHERE kbTitle = ?";
+	try(Connection connection = ConfigBean.getConnection();
+		PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
+	{
+		String kbTitle = kbItemTitle;
+		selectByNameStatement.setString(1, kbTitle);
+		ResultSet kbResult = selectByNameStatement.executeQuery();
+
+		// If kb item found 
+		if(kbResult.next())
+		{
+			System.out.println("Title match found");
+			return true;
+		}
+
+		//If kb item not found
+		else
+		{
+			return false;
+		}
+	}
+
+	catch(SQLException e)
+	{
+		System.out.println("findKbItem() failed");
+		System.err.println(e.getMessage());
+		System.err.println(e.getStackTrace());
+	}
+	return false;
+
+}
+
+	public static ArrayList<KnowledgeBaseBean> loadKbItems()
+	{
+		ArrayList<KnowledgeBaseBean> items = new ArrayList<KnowledgeBaseBean>();
+		String selectAllQuery = "SELECT * FROM knowledgeBase";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement selectAllStatement = connection.prepareStatement(selectAllQuery);)
+		{
+			ResultSet allItemResults = selectAllStatement.executeQuery();
+			while(allItemResults.next())
+			{
+				System.out.println();
+				KnowledgeBaseBean tempItems = new KnowledgeBaseBean();
+				tempItems.setUser(allItemResults.getString(1));
+				tempItems.setTitle(allItemResults.getString(2));
+				tempItems.setCategory(allItemResults.getString(3));
+				tempItems.setKbOpened(allItemResults.getString(4));
+				tempItems.setKbClosed(allItemResults.getString(5));
+				tempItems.setDescription(allItemResults.getString(6));
+				tempItems.setKeyword(allItemResults.getString(7));
+				tempItems.setKbComment(allItemResults.getString(8));
+				tempItems.setResolution(allItemResults.getString(9));
+				items.add(tempItems);
+
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println("loadTickets() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+		return items;
+	}
 }

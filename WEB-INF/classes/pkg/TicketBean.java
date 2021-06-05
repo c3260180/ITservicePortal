@@ -10,11 +10,11 @@ public class TicketBean implements Serializable {
 	private String userAssigned;
 	private String ticketStatus;
 	private String ticketOpened;
-
 	private String ticketTitle;
 	private String ticketCategory;
 	private String ticketKeyword;
 	private String ticketDescription;
+	private String ticketComment;
 
 
 	//constructor
@@ -85,6 +85,14 @@ public class TicketBean implements Serializable {
 
 	public String getDescription(){
 		return this.ticketDescription;
+	}
+
+	public synchronized void setComment(String c){
+		this.ticketComment=c;
+	}
+
+	public String getComment(){
+		return this.ticketComment;
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@page import="pkg.UserBean" %>
 <%@page import="pkg.TicketBean" %>
+<%@page import="pkg.KnowledgeBaseBean" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.Date" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -20,7 +21,7 @@ Date date = new Date();
 
 <div id="fixedDisplay">
 
-<p>Logged in as: <%//=user.getUserName()%>  		</p>	
+<p>Logged in as: <%=user.getUserName()%>  		</p>	
 <form method="GET" id="LogoutForm" action="LoginRegisterServlet">
 	<input type="submit" name="Logout" id="Logout" value="Logout">
 </form>
@@ -162,6 +163,7 @@ Date date = new Date();
 <% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
 <div id="ViewknowledgeBaseView">
 	<h2>Knowledge Base</h2>
+	<% ArrayList<KnowledgeBaseBean> items = (ArrayList<KnowledgeBaseBean>) session.getAttribute("KbList"); %>
 <table>
 	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
 	<tr>
