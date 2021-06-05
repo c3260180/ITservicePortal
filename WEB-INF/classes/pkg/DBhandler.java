@@ -235,13 +235,87 @@ public class DBhandler
 
 	}
 
-	public static ArrayList<TicketBean> loadTickets()
+	/*public static ArrayList<TicketBean> loadTickets()
 	{
 		String selectByNameQuery = "SELECT * FROM ticket WHERE ticketTitle = ?";
 		try(Connection connection = ConfigBean.getConnection();
 			PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
 		{
+	}*/
+
+	//-------------------- Knowledge Base Functions ---------------------------
+	public static boolean saveEntry(KnowledgeBaseBean item)
+	{
+		String insertQuery = "INSERT INTO knoewledgeBase VALUES (?,?,?,?,?,?,?,?,?,?)";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement insertStatement = connection.prepareStatement(insertQuery);)
+		{
+			//Ticket not found
+			if(!findTicketByTitle(item.getTitle()))
+			{
+				insertStatement.setString(1, item.getUser());
+				insertStatement.setString(4, item.getTitle());
+				insertStatement.setString(6, item.getCategory());
+				insertStatement.setString(5, item.getKbOpened());
+				insertStatement.setString(5, item.getKbClosed());
+				insertStatement.setString(7, item.getDescription());
+				insertStatement.setString(2, item.getKeyword());
+				insertStatement.setString(3, item.getKbComment());
+				insertStatement.setString(3, item.getResolution());
+				
+				insertStatement.execute();
+				return true;
+			}
+			//if the ticket was found
+			else
+			{
+				//may or may not need to implement this
+				return false;
+			}
+		}
+
+		catch(SQLException e)
+		{
+			System.out.println("saveEntry() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+
+		return false;
+
 	}
+	
+	public static boolean findKbItem(String kbItemTitle)
+	{
+		String selectByNameQuery = "SELECT * FROM knowledgeBase WHERE kbTitle = ?";
+		try(Connection connection = ConfigBean.getConnection();
+			PreparedStatement selectByNameStatement = connection.prepareStatement(selectByNameQuery);)
+		{
+			String kbTitle = kbItemTitle;
+			selectByNameStatement.setString(1, kbTitle);
+			ResultSet kbResult = selectByNameStatement.executeQuery();
 
+			// If ticket found 
+			if(kbResult.next())
+			{
+				System.out.println("Title match found");
+				return true;
+			}
 
+			//If ticket not found
+			else
+			{
+				return false;
+			}
+		}
+
+		catch(SQLException e)
+		{
+			System.out.println("findKbItem() failed");
+			System.err.println(e.getMessage());
+			System.err.println(e.getStackTrace());
+		}
+		return false;
+
+	}
 }
