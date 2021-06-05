@@ -20,7 +20,7 @@ Date date = new Date();
 
 <div id="fixedDisplay">
 
-<p>Logged in as: <%=user.getUserName()%>  		</p>	
+<p>Logged in as: <%//=user.getUserName()%>  		</p>	
 <form method="GET" id="LogoutForm" action="LoginRegisterServlet">
 	<input type="submit" name="Logout" id="Logout" value="Logout">
 </form>
@@ -53,7 +53,7 @@ Date date = new Date();
 <br>
 </div>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("CreateTicket") && session.getAttribute("displayRequestUserPage") != null) { %>
+<% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("CreateTicket")) { %>
 <div id="CreateTicketView">
 	<h2>Create Ticket</h2>
 	<table>
@@ -91,7 +91,7 @@ Date date = new Date();
 </div>
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("ViewTickets") && session.getAttribute("displayRequestUserPage") != null) { %>
+<% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("ViewTickets") && session.getAttribute("displayRequestUserPage") != null) { %>
 <div id="ViewTicketsView">
 	<h2>View Tickets</h2>
 <% ArrayList<TicketBean> tickets = (ArrayList<TicketBean>) session.getAttribute("TicketList"); %>
@@ -159,7 +159,7 @@ Date date = new Date();
 </div>
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("KnowledgeBase") && session.getAttribute("displayRequestUserPage") != null) { %>
+<% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
 <div id="ViewknowledgeBaseView">
 	<h2>Knowledge Base</h2>
 <table>
@@ -200,7 +200,7 @@ Date date = new Date();
 </table>
 </div>
 <% } %> 
-<% if(session.getAttribute("displayRequestUserPage").equals("ViewTicket") && session.getAttribute("displayRequestUserPage") != null){ %>
+<% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("ViewTicket")){ %>
 <div id="ViewTicketView">
 <% TicketBean ticket = (TicketBean) session.getAttribute("TicketToView"); %>
 <h2>View Ticket</h2>
@@ -243,7 +243,7 @@ Date date = new Date();
 
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("ViewArticle") && session.getAttribute("displayRequestUserPage") != null) { %>
+<% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("ViewArticle")) { %>
 <div id="ViewArticleView">
 
 </div>
