@@ -42,6 +42,6 @@ kbComment VARCHAR (8000),
 kbResolution VARCHAR (500)
 );
 
-DROP TABLE ticket, userAccount, knowledgeBase;
+DROP TABLE userAccount;
 
-SELECT * FROM userAccount;
+SELECT * FROM ticket;

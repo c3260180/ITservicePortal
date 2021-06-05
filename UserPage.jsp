@@ -197,7 +197,22 @@ Date date = new Date();
 	<th>Resolution</th>
 	<th></th>
 	</tr>
-	
+
+<% for(int i = 0; i < items.size(); i++ ){ %>
+<tr>
+	<td><%= items.get(i).getTitle()%></td>
+	<td><%= items.get(i).getCategory()%></td>
+	<td><%= items.get(i).getKbOpened() %></td>
+	<td><%= items.get(i).getKbClosed() %></td>
+	<td><%= items.get(i).getKeyword()%></td>
+	<td><%= items.get(i).getDescription()%></td>
+	<td><%= items.get(i).getResolution()%></td>
+	<form method="GET"  action="UserPageServlet">
+	<td><input type="hidden" name="TicketToOpen" value="<%= i%>">
+		<input type="submit" name="ViewTicket" value="ViewTicket"></td>
+	</form>
+</tr>
+<% } %>
 </table>
 </div>
 <% } %> 

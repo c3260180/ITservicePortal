@@ -32,13 +32,13 @@ public class UserPageServlet extends HttpServlet
 				request.getSession().setAttribute("TicketList", tickets);
 
 			}
-			
+
 			if(request.getParameter("NavBar").equals("CreateTicket"))
 			{
 				request.getSession().setAttribute("saveTicketSuccess", null);
 			}
 
-			response.sendRedirect("UserPage.jsp");
+				response.sendRedirect("UserPage.jsp");
 
 			/*if(request.getParameter("NavBar").equals("KnowledgeBase"))
 			{
@@ -46,6 +46,8 @@ public class UserPageServlet extends HttpServlet
 				System.out.println(items.size());
 				request.getSession().setAttribute("KbList", items);
 			}*/
+
+		
 
 		}
 
