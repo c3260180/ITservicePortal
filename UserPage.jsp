@@ -221,13 +221,17 @@ Date date = new Date();
 
 		<tr> <td>Keywords</td> <td>  <%= ticket.getKeyword()%></td> </tr>
 
-		<tr> <td>Creation Time</td> <td>  <%= ticket. getOpened()%></td> </tr>
+		<tr> <td>Creation Time</td> <td>  <%= ticket.getOpened()%></td> </tr>
 
-		<tr> <td>Creation Time</td> <td>  <%= ticket. getOpened()%></td> </tr>
+		<tr> <td>Comments</td> <td> No Comment Field yet <%= ticket.getOpened()%></td> </tr>
+
+		<tr> <td>Created By: </td> <td>  <%= ticket.getUser()%></td> </tr>
+
+		<tr> <td>New Comment</td> <td> <textarea name="Description" id="Description" required='required' form="EditTicketForm" > Please provide a description of the problem here...</textarea></td> </tr>
 
 		<tr>
 		<td></td>
-		<td> <input type="submit" name="Create Ticket" id="CreateTicket" value="Create Ticket"> <input type='reset' value='Clear' /> </td> </tr>
+		<td> <input type="submit" name="Create Ticket" id="CreateTicket" value="Add Comment"> <input type='reset' value='Clear' /> </td> </tr>
 	</form>
 	</table>
 </div>
