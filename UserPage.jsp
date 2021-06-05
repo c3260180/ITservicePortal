@@ -17,6 +17,7 @@
 <h1> IT Services App </h1>
 <% UserBean user = (UserBean) session.getAttribute("User");
 Date date = new Date();
+
  %>
 
 <div id="fixedDisplay">
@@ -99,7 +100,7 @@ Date date = new Date();
 <table>
 	<tr>
 	<th>Sort by Status </th>
-	<th>Filter Status</th>
+	<th>Status Filter</th>
 	<th>Keyword Search</th>
 	<th>Category Filter</th>
 	</tr>
@@ -112,10 +113,10 @@ Date date = new Date();
 		</td>
 		<form  method="GET" id="ViewTicketsForm" action="UserPageServlet">
 		<td> 
-		New:<input type="radio" name="FilterStatus" value="Network"> 
-		In Progress:<input type="radio" name="FilterStatus" value="Software"> 
-		Completed:<input type="radio" name="FilterStatus" value="Hardware"> 
-		Resolved:<input type="radio" name="FilterStatus" value="Email"> <br> 	
+		New:<input type="radio" name="StatusFilter" value="New"> 
+		In Progress:<input type="radio" name="StatusFilter" value="InProgress"> 
+		Completed:<input type="radio" name="StatusFilter" value="Completed"> 
+		Resolved:<input type="radio" name="StatusFilter" value="Resolved"> <br> 	
 		</td>
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
