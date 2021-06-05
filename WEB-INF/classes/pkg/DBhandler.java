@@ -9,16 +9,6 @@ public class DBhandler
 /*
 
 
-	public static void saveTickets()
-	{
-
-	}
-
-	public static TicketBean loadTicket()
-	{
-
-	}
-
 	public static  void saveTicket()
 	{
 
@@ -34,10 +24,6 @@ public class DBhandler
 		
 	}
 
-	public static KnowledgeBaseBean loadKnowledgeBaseItem()
-	{
-
-	}
 
 	public static void saveKnowledgeBaseItem()
 	{

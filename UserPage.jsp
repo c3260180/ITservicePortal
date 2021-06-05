@@ -172,7 +172,6 @@ Date date = new Date();
 	</tr>
 
 	<tr>
-
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
 		Network:<input type="checkbox" name="CategoryFilter"  value="Network"> 

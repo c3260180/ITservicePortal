@@ -11,7 +11,6 @@ public class KnowledgeBaseBean implements Serializable {
 	private String kbID;
 	private String kbTicketOpenedTime;
     private String kbTicketClosedTime;
-
 	private String kbTitle;
 	private String kbCategory;
 	private String kbSubCategory;
