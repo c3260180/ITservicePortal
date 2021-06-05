@@ -50,11 +50,10 @@ Date date = new Date();
 		</td>
 	</tr>
 </table>
-
+<br>
 </div>
 
-<% if(session.getAttribute("displayRequestUserPage") != null) {  %>
-<% if(session.getAttribute("displayRequestUserPage").equals("CreateTicket")) { %>
+<% if(session.getAttribute("displayRequestUserPage").equals("CreateTicket") && session.getAttribute("displayRequestUserPage") != null) { %>
 <div id="CreateTicketView">
 	<h2>Create Ticket</h2>
 	<table>
@@ -92,30 +91,30 @@ Date date = new Date();
 </div>
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("ViewTickets")) { %>
+<% if(session.getAttribute("displayRequestUserPage").equals("ViewTickets") && session.getAttribute("displayRequestUserPage") != null) { %>
 <div id="ViewTicketsView">
 	<h2>View Tickets</h2>
 <% ArrayList<TicketBean> tickets = (ArrayList<TicketBean>) session.getAttribute("TicketList"); %>
 <table>
-	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
 	<tr>
+	<th>Sort by Status </th>
 	<th>Filter Status</th>
-	<th>Sort by Status</th>
 	<th>Keyword Search</th>
 	<th>Category Filter</th>
 	</tr>
 
 	<tr>
-		<td> 
-		New:<input type="radio" name="Filter Status" id="FilterStatus" value="Network"> 
-		In Progress:<input type="radio" name="Filter Status" id="FilterStatus" value="Software"> 
-		Completed:<input type="radio" name="Filter Status" id="FilterStatus" value="Hardware"> 
-		Resolved:<input type="radio" name="Filter Status" id="FilterStatus" value="Email"> <br> 	
-		</td>
+		<form method="GET" id="SortByStatus" action="UserPageServlet">
 		<td>
-			<form method="GET" id="SortByStatus" action="LoginRegisterServlet">
-			<input type="submit" name="SortByStatus" id="SortByStatus" value="Sort">
-			</form>
+		<input type="submit" name="SortByStatus" value="Sort">
+		</form>
+		</td>
+		<form  method="GET" id="ViewTicketsForm" action="UserPageServlet">
+		<td> 
+		New:<input type="radio" name="FilterStatus" value="Network"> 
+		In Progress:<input type="radio" name="FilterStatus" value="Software"> 
+		Completed:<input type="radio" name="FilterStatus" value="Hardware"> 
+		Resolved:<input type="radio" name="FilterStatus" value="Email"> <br> 	
 		</td>
 		<td><input type="text" name="KeywordsSearch" id="KeywordsSearch"  value=""></td>
 		<td> 
@@ -126,10 +125,10 @@ Date date = new Date();
 		Account:<input type="checkbox" name="CategoryFilter" value="Account"> 	
 		</td>
 	</tr>
-
-</table>
-<input type="submit" name="Create Ticket" id="ApplyFilters" value="ApplyFilters"> <input type='reset' value='Clear' />
+<tr><input type="submit" name="ApplyFilters" id="ApplyFilters" value="ApplyFilters"/> <input type='reset' value='Clear' /></tr>
 </form>
+</table>
+<br>
 <table>
 	<tr>
 	<th>Title</th>
@@ -149,7 +148,10 @@ Date date = new Date();
 	<td><%= tickets.get(i).getOpened() %></td>
 	<td><%= tickets.get(i).getKeyword()%></td>
 	<td><%= tickets.get(i).getDescription()%></td>
-	<td>View Ticket</td>
+	<form method="GET"  action="UserPageServlet">
+	<td><input type="hidden" name="TicketToOpen" value="<%= i%>">
+		<input type="submit" name="ViewTicket" value="ViewTicket"></td>
+	</form>
 </tr>
 
 <% } %>
@@ -157,7 +159,7 @@ Date date = new Date();
 </div>
 <% } %>
 
-<% if(session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
+<% if(session.getAttribute("displayRequestUserPage").equals("KnowledgeBase") && session.getAttribute("displayRequestUserPage") != null) { %>
 <div id="ViewknowledgeBaseView">
 	<h2>Knowledge Base</h2>
 <table>
@@ -197,10 +199,54 @@ Date date = new Date();
 	
 </table>
 </div>
-<% } } %>
+<% } %> 
+<% if(session.getAttribute("displayRequestUserPage").equals("ViewTicket") && session.getAttribute("displayRequestUserPage") != null){ %>
+<div id="ViewTicketView">
+<% TicketBean ticket = (TicketBean) session.getAttribute("TicketToView"); %>
+<h2>View Ticket</h2>
+	<table>
+		<form  method="POST" id="EditTicketForm" action="UserPageServlet">
+		<tr> <td>Title</td> <td> <%= ticket.getTitle()%> </td> </tr>
+
+		<tr> 
+			<td>Category</td> 
+			 <td> <%= ticket.getCategory()%></td> 
+		</tr>
+
+		<tr> <td>Keywords</td> <td>  <%= ticket.getKeyword()%> </td> </tr>
+
+		<tr> <td>Description</td> <td>  <%= ticket.getDescription()%></td> </tr>
+
+		<tr> <td>Status</td> <td>  <%= ticket.getStatus()%></td> </tr>
+
+		<tr> <td>Keywords</td> <td>  <%= ticket.getKeyword()%></td> </tr>
+
+		<tr> <td>Creation Time</td> <td>  <%= ticket. getOpened()%></td> </tr>
+
+		<tr> <td>Creation Time</td> <td>  <%= ticket. getOpened()%></td> </tr>
+
+		<tr>
+		<td></td>
+		<td> <input type="submit" name="Create Ticket" id="CreateTicket" value="Create Ticket"> <input type='reset' value='Clear' /> </td> </tr>
+	</form>
+	</table>
+</div>
 
 
-<p id="Time"></p>
+
+
+
+
+<% } %>
+
+<% if(session.getAttribute("displayRequestUserPage").equals("ViewArticle") && session.getAttribute("displayRequestUserPage") != null) { %>
+<div id="ViewArticleView">
+
+</div>
+
+<% }  %>
+
+
 
 </body>
 </html>

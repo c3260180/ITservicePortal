@@ -235,6 +235,7 @@ public class DBhandler
 
 	}
 
+	// need to handle 2 different cases based on user role here
 	public static ArrayList<TicketBean> loadTickets()
 	{
 		ArrayList<TicketBean> tickets = new ArrayList<TicketBean>();

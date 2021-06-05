@@ -32,8 +32,28 @@ public class UserPageServlet extends HttpServlet
 				request.getSession().setAttribute("TicketList", tickets);
 
 			}
+			if(request.getParameter("NavBar").equals("CreateTicket"))
+			{
+				request.getSession().setAttribute("saveTicketSuccess", null);
+			}
 			response.sendRedirect("UserPage.jsp");
 
+		}
+
+		if(request.getParameter("ApplyFilters") != null || request.getParameter("SortByStatus") != null)
+		{
+			System.out.println("122222");
+		}
+
+		if(request.getParameter("ViewTicket") != null )
+		{
+			System.out.println(request.getParameter("TicketToOpen"));
+			ArrayList<TicketBean> tickets = DBhandler.loadTickets();
+			int i = Integer.parseInt(request.getParameter("TicketToOpen"));
+			TicketBean tmpTicket = tickets.get(i);
+			request.getSession().setAttribute("TicketToView", tmpTicket);
+			request.getSession().setAttribute("displayRequestUserPage", "ViewTicket");
+			response.sendRedirect("UserPage.jsp");
 		}
 
 	}
