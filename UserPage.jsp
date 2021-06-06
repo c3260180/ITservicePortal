@@ -164,7 +164,7 @@ Date date = new Date();
 <% if(session.getAttribute("displayRequestUserPage") != null && session.getAttribute("displayRequestUserPage").equals("KnowledgeBase")) { %>
 <div id="ViewknowledgeBaseView">
 	<h2>Knowledge Base</h2>
-	<% ArrayList<KnowledgeBaseBean> items = (ArrayList<KnowledgeBaseBean>) session.getAttribute("KbList"); %>
+	<% ArrayList<TicketBean> tickets = (ArrayList<TicketBean>) session.getAttribute("TicketList"); %>
 <table>
 	<form  method="POST" id="ViewTicketsForm" action="UserPageServlet">
 	<tr>
@@ -199,21 +199,23 @@ Date date = new Date();
 	<th></th>
 	</tr>
 
-<% for(int i = 0; i < items.size(); i++ ){ %>
-<tr>
-	<td><%= items.get(i).getTitle()%></td>
-	<td><%= items.get(i).getCategory()%></td>
-	<td><%= items.get(i).getKbOpened() %></td>
-	<td><%= items.get(i).getKbClosed() %></td>
-	<td><%= items.get(i).getKeyword()%></td>
-	<td><%= items.get(i).getDescription()%></td>
-	<td><%= items.get(i).getResolution()%></td>
-	<form method="GET"  action="UserPageServlet">
-	<td><input type="hidden" name="TicketToOpen" value="<%= i%>">
+	<% for(int i = 0; i < tickets.size(); i++ )
+	{ %>
+	<tr>
+		<td><%= tickets.get(i).getTitle()%></td>
+		<td><%= tickets.get(i).getCategory()%></td>
+		<td><%= tickets.get(i).getOpened() %></td>
+		<td>-------------</td>
+		<td><%= tickets.get(i).getKeyword()%></td>
+		<td><%= tickets.get(i).getDescription()%></td>
+		<td>-------------</td>
+		<form method="GET"  action="UserPageServlet">
+		<td><input type="hidden" name="TicketToOpen" value="<%= i%>">
 		<input type="submit" name="ViewTicket" value="ViewTicket"></td>
 	</form>
-</tr>
-<% } %>
+	</tr>
+	
+	<% } %>
 </table>
 </div>
 <% } %> 
@@ -240,7 +242,7 @@ Date date = new Date();
 
 		<tr> <td>Creation Time</td> <td>  <%= ticket.getOpened()%></td> </tr>
 
-		<tr> <td>Comments</td> <td> No Comment Field yet <%= ticket.getOpened()%></td> </tr>
+		<tr> <td>Comments</td> <td> No Comment Field yet</td> </tr>
 
 		<tr> <td>Created By: </td> <td>  <%= ticket.getUser()%></td> </tr>
 
