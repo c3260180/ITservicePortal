@@ -211,7 +211,7 @@ Date date = new Date();
 		<td>-------------</td>
 		<form method="GET"  action="UserPageServlet">
 		<td><input type="hidden" name="TicketToOpen" value="<%= i%>">
-		<input type="submit" name="ViewTicket" value="ViewTicket"></td>
+		<input type="submit" name="ViewTicket" value="View Item"></td>
 	</form>
 	</tr>
 	
