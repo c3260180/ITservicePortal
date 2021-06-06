@@ -21,9 +21,7 @@ public class SessionListener implements HttpSessionListener
 	{
 		
 
-		String user = (String) e.getSession().getAttribute("UserName");
-		String password = (String) e.getSession().getAttribute("Password");
-		System.out.println("Session closed for: " + user );
+		//System.out.println("Session closed for: " + user );
 		
 
 	}		
